@@ -1,5 +1,6 @@
 vim.g.mapleader = ','
 vim.b.mapleader = ','
+require('plugins')
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -15,6 +16,8 @@ vim.bo.smartindent = true
 vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4
 vim.bo.expandtab = true
+
+vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
 
 vim.o.hlsearch = true
 vim.o.ignorecase = true
@@ -36,12 +39,13 @@ vim.o.termguicolors = true
 vim.o.completeopt = "menuone,noselect"
 
 vim.g.syntax_on = true
-vim.cmd.colorscheme('tokyonight')
 
 vim.g.tokyonight_enable_italic = 1
 vim.g.tokyonight_transparent_background = 1
 vim.g.lightline = {colorscheme = 'tokyonight'}
+vim.cmd.colorscheme('tokyonight')
 
-require('plugins')
+
 require('lsp')
 require('maps')
+require('hydras')

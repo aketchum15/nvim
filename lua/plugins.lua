@@ -1,6 +1,10 @@
+-- vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
     -- colorscheme
     use 'ghifarit53/tokyonight-vim'
+
+    -- completion engine
+    use 'hrsh7th/nvim-cmp'
 
     -- cmp sources
     use 'hrsh7th/cmp-buffer'
@@ -8,14 +12,16 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-path'
 
-    -- completion engine
-    use 'hrsh7th/nvim-cmp'
-
     -- bar
     use 'itchyny/lightline.vim'
+    use 'romgrk/barbar.nvim'
 
+    use 'nvim-tree/nvim-web-devicons'
+    use 'anuvyklack/hydra.nvim'
+    use 'unblevable/quick-scope'
 	use 'L3MON4D3/LuaSnip'
     use 'neovim/nvim-lspconfig'
+    use 'simrat39/rust-tools.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-lua/popup.nvim'
     use {
@@ -33,5 +39,5 @@ require('packer').startup(function(use)
     use 'williamboman/mason-lspconfig.nvim'
 end)
 
-require('telescope').load_extension('fzf')
-require("luasnip.loaders.from_vscode").lazy_load()
+--require('telescope').load_extension('fzf')
+--require("luasnip.loaders.from_vscode").lazy_load()

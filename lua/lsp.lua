@@ -3,6 +3,7 @@ require('mason').setup {}
 require('mason-lspconfig').setup {}
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 local lspconfig = require('lspconfig')
 
 lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
@@ -12,6 +13,14 @@ lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
 
 require('lspconfig').clangd.setup {
 }
+
+require('lspconfig').pyright.setup {
+}
+
+require('lspconfig').rust_analyzer.setup {
+}
+
+require('rust-tools').setup()
 
 require('lspconfig').lua_ls.setup {
     settings = {
@@ -27,6 +36,10 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 
 cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered()
+    },
     sources = {
         { name = 'nvim_lsp' },
         { name = 'buffer' },

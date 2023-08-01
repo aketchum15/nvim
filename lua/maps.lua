@@ -16,8 +16,6 @@ map('n', 'Y', 'y$')
 -- find files
 map('n', '<leader>f', '<cmd>Telescope find_files<CR>')
 -- map('n', '<leader>f', '<cmd>Telescope git_files<CR>')
--- buffers
-map('n', '<leader>b', '<cmd>Telescope buffers<CR>')
 -- grep the string under the cursor
 map('n', '<leader>g', '<cmd>Telescope grep_string<CR>')
 
