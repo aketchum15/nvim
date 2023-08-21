@@ -13,8 +13,8 @@ vim.wo.signcolumn = 'number'
 
 vim.bo.autoindent = true
 vim.bo.smartindent = true
-vim.bo.tabstop = 4
-vim.bo.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 vim.bo.expandtab = true
 
 vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
@@ -42,14 +42,36 @@ vim.g.syntax_on = true
 
 vim.g.tokyonight_enable_italic = 1
 vim.g.tokyonight_transparent_background = 1
-vim.g.lightline = {colorscheme = 'tokyonight'}
-vim.cmd.colorscheme('tokyonight')
+vim.opt.background = 'dark'
+vim.cmd.colorscheme('oxocarbon')
 
 require('telescope').setup({
   extensions = {
     aerial = {}
   }
 })
+vim.g.barbar_auto_setup = false -- disable auto-setup
+
+require'barbar'.setup {
+  -- Enable/disable auto-hiding the tab bar when there is a single buffer
+  auto_hide = true,
+
+  clickable = false,
+
+  icons = {
+    buffer_index = true,
+    button = '',
+  },
+
+  insert_at_end = true,
+
+  semantic_letters = false,
+
+  no_name_title = 'New Buffer',
+}
+require('lualine').setup()
+require('aerial').setup()
+require("oil").setup()
 require('telescope').load_extension('aerial')
 require('lsp')
 require('maps')

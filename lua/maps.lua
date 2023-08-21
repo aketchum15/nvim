@@ -14,8 +14,9 @@ map('n', 'Y', 'y$')
 -- Telescope
 
 -- find files
-map('n', '<leader>f', '<cmd>Telescope find_files<CR>')
--- map('n', '<leader>f', '<cmd>Telescope git_files<CR>')
+map('n', '<leader>f', '<cmd>Telescope git_files<CR>')
+map('n', '<leader>F', '<cmd>Telescope aerial<CR>')
+
 -- grep the string under the cursor
 map('n', '<leader>g', '<cmd>Telescope grep_string<CR>')
 

@@ -1,6 +1,7 @@
 -- vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
     -- colorscheme
+    use 'nyoom-engineering/oxocarbon.nvim'
     use 'ghifarit53/tokyonight-vim'
 
     -- completion engine
@@ -13,13 +14,14 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
 
     -- bar
-    use 'itchyny/lightline.vim'
+	use {
+	  'nvim-lualine/lualine.nvim',
+	  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	}
     use 'romgrk/barbar.nvim'
 
-    use {
-      'stevearc/aerial.nvim',
-      config = function() require('aerial').setup() end
-    }
+    use 'stevearc/aerial.nvim'
+    use 'stevearc/oil.nvim'
     use 'nvim-tree/nvim-web-devicons'
     use 'anuvyklack/hydra.nvim'
     use 'unblevable/quick-scope'
