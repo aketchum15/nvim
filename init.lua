@@ -45,7 +45,12 @@ vim.g.tokyonight_transparent_background = 1
 vim.g.lightline = {colorscheme = 'tokyonight'}
 vim.cmd.colorscheme('tokyonight')
 
-
+require('telescope').setup({
+  extensions = {
+    aerial = {}
+  }
+})
+require('telescope').load_extension('aerial')
 require('lsp')
 require('maps')
 require('hydras')

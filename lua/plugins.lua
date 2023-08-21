@@ -16,6 +16,10 @@ require('packer').startup(function(use)
     use 'itchyny/lightline.vim'
     use 'romgrk/barbar.nvim'
 
+    use {
+      'stevearc/aerial.nvim',
+      config = function() require('aerial').setup() end
+    }
     use 'nvim-tree/nvim-web-devicons'
     use 'anuvyklack/hydra.nvim'
     use 'unblevable/quick-scope'
