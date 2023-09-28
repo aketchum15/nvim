@@ -44,6 +44,9 @@ vim.g.tokyonight_enable_italic = 1
 vim.g.tokyonight_transparent_background = 1
 vim.opt.background = 'dark'
 vim.cmd.colorscheme('oxocarbon')
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
 
 require('telescope').setup({
   extensions = {

@@ -7,12 +7,16 @@ require('packer').startup(function(use)
     -- completion engine
     use 'hrsh7th/nvim-cmp'
 
+    -- markdown preview
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
     -- cmp sources
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-path'
-
     -- bar
 	use {
 	  'nvim-lualine/lualine.nvim',
