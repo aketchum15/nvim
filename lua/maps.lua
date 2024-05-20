@@ -12,9 +12,24 @@ map('n', '<space><space>', '<cmd>noh<CR>', {silent = true})
 map('n', 'Y', 'y$')
 
 -- Telescope
+-- helper function to determine if in git repo or not
+project_files = function()
+  local opts = {} -- define here if you want to define something
 
+  local cwd = vim.fn.getcwd()
+  if is_inside_work_tree[cwd] == nil then
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    is_inside_work_tree[cwd] = vim.v.shell_error == 0
+  end
+
+  if is_inside_work_tree[cwd] then
+    builtin.git_files(opts)
+  else
+    builtin.find_files(opts)
+  end
+end
 -- find files
-map('n', '<leader>f', '<cmd>Telescope find_files<CR>')
+map('n', '<leader>f', '<cmd>Telescope git_files<CR>')
 map('n', '<leader>F', '<cmd>Telescope aerial<CR>')
 
 -- grep the string under the cursor
@@ -45,3 +60,6 @@ map('n', '<leader>D', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { silent = true
 
 -- show diagnostics
 map('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<cr>')
+
+-- code actions
+map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>')

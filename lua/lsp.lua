@@ -11,16 +11,26 @@ lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
     lspconfig.util.default_config.capabilities,
     capabilities)
 
-require('lspconfig').clangd.setup {
+require('lspconfig').texlab.setup {
+    settings = {
+        texlab = {
+            build = {
+                executable = "tectonic",
+                args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+                forwardSearchAfter = true,
+                onSave = true
+            },
+            forwardSearch = {
+                executable = "zathura",
+                args = { "--synctex-forward", "%l:1:%f", "%p" }
+            }
+        }
+    }
 }
 
-require('lspconfig').pyright.setup {
-}
+require('lspconfig').clangd.setup {}
 
-require('lspconfig').rust_analyzer.setup {
-}
-
-require('rust-tools').setup()
+require('lspconfig').pyright.setup {}
 
 require('lspconfig').lua_ls.setup {
     settings = {
@@ -132,5 +142,12 @@ vim.diagnostic.config({
     float = { source = 'always' }
 })
 
-
-local a = 1
+require('lspsaga').setup {
+	ui = {border = "rounded"},
+	code_action = {
+		only_in_cursor = false,
+		keys = {quit = "<ESC>"}
+	},
+	lightbulb = {enable = false},
+	symbol_in_winbar = {enable = false},
+}

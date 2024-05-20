@@ -17,8 +17,6 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.bo.expandtab = true
 
-vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
-
 vim.o.hlsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -40,6 +38,9 @@ vim.o.completeopt = "menuone,noselect"
 
 vim.g.syntax_on = true
 
+vim.g.vimtex_compiler_method = 'tectonic'
+vim.g.vimtex_view_method = 'zathura'
+
 vim.g.tokyonight_enable_italic = 1
 vim.g.tokyonight_transparent_background = 1
 vim.opt.background = 'dark'
@@ -50,7 +51,8 @@ vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
 
 require('telescope').setup({
   extensions = {
-    aerial = {}
+    aerial = {},
+    fzf = {},
   }
 })
 vim.g.barbar_auto_setup = false -- disable auto-setup
@@ -72,10 +74,12 @@ require'barbar'.setup {
 
   no_name_title = 'New Buffer',
 }
+
 require('lualine').setup()
 require('aerial').setup()
-require("oil").setup()
+require('oil').setup()
 require('telescope').load_extension('aerial')
+require('telescope').load_extension('fzf')
 require('lsp')
 require('maps')
 require('hydras')
