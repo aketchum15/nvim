@@ -55,15 +55,17 @@ require("lazy").setup({
 	-- colorscheme
 	{'nyoom-engineering/oxocarbon.nvim'},
 
+	{'norcalli/nvim-colorizer.lua'},
+
 	-- tabs 
 	{'romgrk/barbar.nvim'},
 	{'stevearc/aerial.nvim'},
 
-    {
-      'mrcjkb/rustaceanvim',
-      version = '^4', -- Recommended
-      ft = { 'rust' },
-    },
+	{
+	  'mrcjkb/rustaceanvim',
+	   version = '^4', -- Recommended
+	   ft = { 'rust' },
+	},
 
 	{
 	  "rust-lang/rust.vim",

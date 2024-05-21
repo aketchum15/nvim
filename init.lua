@@ -78,8 +78,55 @@ require'barbar'.setup {
 require('lualine').setup()
 require('aerial').setup()
 require('oil').setup()
+require'colorizer'.setup()
 require('telescope').load_extension('aerial')
 require('telescope').load_extension('fzf')
 require('lsp')
 require('maps')
 require('hydras')
+
+function ExportColorsKitty()
+    local fn = vim.fn
+    local filename = os.getenv("HOME") .. "/nvim_export.conf"
+    local file = io.open(filename, "w")
+    io.output(file)
+    io.write("# vim:ft=kitty" .. "\n\n")
+    io.write("# exported from " .. vim.g.colors_name .. "\n\n")
+    local fg = fn.synIDattr(fn.hlID("Normal"), "fg")
+    local bg = fn.synIDattr(fn.hlID("Normal"), "bg")
+    io.write("foreground " .. fg .. "\n")
+    io.write("background " .. bg .. "\n")
+    io.write("selection_foreground " .. bg .. "\n")
+    io.write("selection_background " .. fg .. "\n")
+    for i = 0,15 do
+        local var = "g:terminal_color_" .. tostring(i)
+        if fn.exists(var) == 1 then
+            local tc = fn.eval(var)
+            io.write("color" .. tostring(i) .. " " .. tc .. "\n")
+            if i == 2 then
+                io.write("cursor " .. tc .. "\n")
+            end
+        end
+    end
+    io.close(file)
+    print("Colors exported to " .. filename)
+end
+
+-- base00 = "#161616",
+-- base01 = "#262626",
+-- base02 = "#393939",
+-- base03 = "#525252",
+-- base04 = "#d0d0d0",
+-- base05 = "#f2f2f2",
+-- base06 = "#ffffff",
+-- base07 = "#08bdba",
+-- base08 = "#3ddbd9",
+-- base09 = "#78a9ff",
+-- base10 = "#ee5396",
+-- base11 = "#33b1ff",
+-- base12 = "#ff7eb6",
+-- base13 = "#42be65",
+-- base14 = "#be95ff",
+-- base15 = "#82cfff",
+-- blend = "#131313",
+-- none = "NONE"
