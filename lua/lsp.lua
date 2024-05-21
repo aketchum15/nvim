@@ -11,24 +11,58 @@ lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
     lspconfig.util.default_config.capabilities,
     capabilities)
 
-require('lspconfig').clangd.setup {
-}
-
-require('lspconfig').pyright.setup {
-}
-
-require('lspconfig').rust_analyzer.setup {
-}
-
-require('rust-tools').setup()
-
-require('lspconfig').lua_ls.setup {
+require('lspconfig').texlab.setup {
     settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim', 'select_opts' }
+        texlab = {
+            build = {
+                executable = "tectonic",
+                args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+                forwardSearchAfter = true,
+                onSave = true
+            },
+            forwardSearch = {
+                executable = "zathura",
+                args = { "--synctex-forward", "%l:1:%f", "%p" }
             }
         }
+    }
+}
+
+require('lspconfig').clangd.setup {}
+
+require('lspconfig').pyright.setup {}
+
+require('lspconfig').lua_ls.setup {
+
+    on_init = function(client)
+        local path = client.workspace_folders[1].name
+        if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+          return
+        end
+
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- Depending on the usage, you might want to add additional paths here.
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          }
+      })
+    end,
+
+    settings = {
+        Lua = {}
     }
 }
 
@@ -132,5 +166,12 @@ vim.diagnostic.config({
     float = { source = 'always' }
 })
 
-
-local a = 1
+require('lspsaga').setup {
+	ui = {border = "rounded"},
+	code_action = {
+		only_in_cursor = false,
+		keys = {quit = "<ESC>"}
+	},
+	lightbulb = {enable = false},
+	symbol_in_winbar = {enable = false},
+}
