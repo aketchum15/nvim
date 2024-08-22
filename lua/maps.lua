@@ -31,9 +31,15 @@ end
 -- find files
 map('n', '<leader>f', '<cmd>Telescope git_files<CR>')
 map('n', '<leader>F', '<cmd>Telescope aerial<CR>')
+map('n', '<leader>b', '<cmd>Telescope buffers<CR>')
 
 -- grep the string under the cursor
 map('n', '<leader>g', '<cmd>Telescope grep_string<CR>')
+
+-- buffer movement
+map('n', '<C-n>', '<cmd>BufferNext<CR>')
+map('n', '<C-p>', '<cmd>BufferPrevious<CR>')
+map('n', '<C-x>', '<cmd>BufferDelete<CR>')
 
 -- lsp
 

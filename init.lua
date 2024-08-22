@@ -83,7 +83,6 @@ require('telescope').load_extension('aerial')
 require('telescope').load_extension('fzf')
 require('lsp')
 require('maps')
-require('hydras')
 
 function ExportColorsKitty()
     local fn = vim.fn

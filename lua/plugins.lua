@@ -15,8 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-	{'anuvyklack/hydra.nvim'},
-
 	-- cmp sources
 	{'hrsh7th/cmp-buffer'},
 	{'hrsh7th/cmp-cmdline'},
