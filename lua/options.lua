@@ -1,20 +1,20 @@
 vim.g.mapleader = ','
 vim.b.mapleader = ','
 
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
-vim.wo.wrap = false
+vim.o.wrap = false
 
 vim.o.cmdheight = 2
 
 vim.wo.signcolumn = 'number'
 
-vim.bo.autoindent = true
-vim.bo.smartindent = true
+vim.o.autoindent = true
+vim.o.smartindent = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.bo.expandtab = true
+vim.o.expandtab = true
 
 vim.o.hlsearch = true
 vim.o.ignorecase = true
