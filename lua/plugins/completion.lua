@@ -79,27 +79,6 @@ local cmp_setup = function()
     })
 end
 
-local sign = function(opts)
-  vim.fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = ''
-  })
-end
-
-sign({name = 'DiagnosticSignError', text = ''})
-sign({name = 'DiagnosticSignWarn', text = ''})
-sign({name = 'DiagnosticSignHint', text = ''})
-sign({name = 'DiagnosticSignInfo', text = ''})
-
-vim.diagnostic.config({
-    virtual_text = false,
-    severity_sort = true,
-    underline = true,
-    float = { source = 'always' }
-})
-
-
 return {
     {
         'hrsh7th/nvim-cmp',

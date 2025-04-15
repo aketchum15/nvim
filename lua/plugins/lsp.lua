@@ -1,21 +1,19 @@
-local sign = function(opts)
-  vim.fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = ''
-  })
-end
-
-sign({name = 'DiagnosticSignError', text = ''})
-sign({name = 'DiagnosticSignWarn', text = ''})
-sign({name = 'DiagnosticSignHint', text = ''})
-sign({name = 'DiagnosticSignInfo', text = ''})
-
 vim.diagnostic.config({
     virtual_text = false,
     severity_sort = true,
     underline = true,
-    float = { source = 'always' }
+    float = {
+		source = false,
+		border = 'rounded',
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.INFO] = '',
+			[vim.diagnostic.severity.HINT] = '',
+		}
+	}
 })
 
 return {
@@ -85,8 +83,8 @@ return {
                 lspconfig[server].setup(config)
             end
             vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
-            vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, {})
-            vim.keymap.set('n', '<leader>D', vim.diagnostic.goto_prev, {})
+            vim.keymap.set('n', '<leader>d', function () vim.diagnostic.jump({count=1, float=true}) end, {})
+            vim.keymap.set('n', '<leader>D', function () vim.diagnostic.jump({count=-1, float=true}) end, {})
             vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {})
         end,
     },
@@ -107,4 +105,17 @@ return {
             vim.keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', {})
         end
     },
+	{
+		'mrcjkb/haskell-tools.nvim',
+		opts = false
+	},
+	{
+		'nvim-flutter/flutter-tools.nvim',
+		lazy = false,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim', -- optional for vim.ui.select
+		},
+		config = true,
+	},
 }
