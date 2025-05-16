@@ -17,7 +17,7 @@ vim.diagnostic.config({
 })
 
 return {
-    {
+	{
         'neovim/nvim-lspconfig',
         opts = {
             servers = {
@@ -37,7 +37,7 @@ return {
                             version = 'LuaJIT'
                           },
                           -- Make the server aware of Neovim runtime files
-                            workspace = {
+                            workspatextDocumentce = {
                                 checkThirdParty = false,
                                 library = {
                                     vim.env.VIMRUNTIME,
@@ -86,6 +86,10 @@ return {
             vim.keymap.set('n', '<leader>d', function () vim.diagnostic.jump({count=1, float=true}) end, {})
             vim.keymap.set('n', '<leader>D', function () vim.diagnostic.jump({count=-1, float=true}) end, {})
             vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {})
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {})
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
+
         end,
     },
     {
