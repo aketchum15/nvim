@@ -1,3 +1,4 @@
+-- Custom base16 palette (unused but kept for reference/switching)
 local landscape = {
     base00 = '#080D12', base01 = '#202B15', base02 = '#045CA0', base03 = '#486588',
     base04 = '#0279C5', base05 = '#388EAB', base06 = '#1891CE', base07 = '#a7c8e0',
@@ -10,12 +11,22 @@ return {
         main = 'base16-colorscheme',
         opts = 'base16-tokyo-night-dark',
         config = function (_, opts)
+            -- If opts is a table (custom palette), apply directly; otherwise use named scheme
             if #opts > 1 then
                 require('base16-colorscheme').setup(opts)
             else
                 vim.cmd('colorscheme ' .. opts[1])
             end
 
+            -- Fix highlight groups that don't look right with the base16 theme
+            vim.api.nvim_set_hl(0, 'TelescopePreviewLine', { link = 'Visual' })
+            vim.api.nvim_set_hl(0, 'ColorColumn', { link = 'Visual' })
+
+            -- Enable treesitter highlighting for every buffer
+            vim.api.nvim_create_autocmd('BufReadPost', {
+              pattern = '*',
+              callback = function() pcall(vim.treesitter.start) end,
+            })
         end
     }
 }
